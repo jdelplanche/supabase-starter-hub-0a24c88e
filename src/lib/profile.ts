@@ -2,6 +2,9 @@
  * ROUT Profile & Link Hub — data model for the public rout.be/@handle page.
  * Kept deliberately small: handle + identity + an ordered list of blocks.
  */
+import { handleLengthMessage } from "./handle-rules";
+
+
 
 export interface ProfileBlock {
   id: string;
@@ -769,8 +772,8 @@ export const isValidHandle = (h: string) => /^[a-z0-9](?:[a-z0-9-]{1,28}[a-z0-9]
 /** Human-readable reason a handle is unusable, or null when it is valid. */
 export function handleIssue(h: string): string | null {
   if (!h) return "Choose a handle to claim your namespace.";
-  if (h.length < HANDLE_MIN_LENGTH)
-    return `Handles must be at least ${HANDLE_MIN_LENGTH} characters long.`;
+  const lengthIssue = handleLengthMessage(h);
+  if (lengthIssue) return lengthIssue;
   if (h.length > HANDLE_MAX_LENGTH)
     return `Handles can be at most ${HANDLE_MAX_LENGTH} characters long.`;
   if (isReservedHandle(h)) return "That handle is reserved by the system.";
