@@ -11,11 +11,11 @@ export const SHORT_HANDLE_MIN = 3;
 export const SHORT_HANDLE_MAX = 4;
 
 /**
- * Temporary switch: while this is `false` every handle of 3 characters or more
- * can be claimed through normal signup. Flip to `true` to re-enable the
- * VIP-only reservation on 3- and 4-character handles.
+ * Mirrors the `profiles_short_handle_rule` database trigger: 3- and 4-character
+ * handles are reserved for admin VIP grants, everything from 5 characters up is
+ * free to claim. Keep this in sync with the SQL trigger.
  */
-export const SHORT_HANDLE_RESERVATION_ENABLED = false;
+export const SHORT_HANDLE_RESERVATION_ENABLED = true;
 
 /** Marker stored in `profiles.handle_grant` when an admin granted a short handle. */
 export const VIP_HANDLE_GRANT = "vip";
