@@ -758,13 +758,13 @@ export function normalizeHandle(raw: string): string {
     .slice(0, 30);
 }
 
-/** Minimum handle length — prevents namespace squatting on 1–4 char handles. */
-export const HANDLE_MIN_LENGTH = 5;
+/** Minimum handle length — 3 characters is the platform-wide floor. */
+export const HANDLE_MIN_LENGTH = 3;
 export const HANDLE_MAX_LENGTH = 30;
 
-export const HANDLE_RULE = "5–30 characters · lowercase letters, numbers and hyphens";
+export const HANDLE_RULE = "3–30 characters · lowercase letters, numbers and hyphens";
 
-export const isValidHandle = (h: string) => /^[a-z0-9](?:[a-z0-9-]{3,28}[a-z0-9])$/.test(h);
+export const isValidHandle = (h: string) => /^[a-z0-9](?:[a-z0-9-]{1,28}[a-z0-9])$/.test(h);
 
 /** Human-readable reason a handle is unusable, or null when it is valid. */
 export function handleIssue(h: string): string | null {

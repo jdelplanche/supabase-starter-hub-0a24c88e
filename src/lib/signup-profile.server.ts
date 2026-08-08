@@ -32,7 +32,7 @@ function normalizeHandle(raw: unknown): string {
 
 function isUsableHandle(handle: string) {
   return (
-    handle.length >= 5 &&
+    handle.length >= 3 &&
     handle.length <= 120 &&
     HANDLE_PATTERN.test(handle) &&
     !RESERVED.has(handle)
