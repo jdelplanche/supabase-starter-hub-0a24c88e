@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light only" />
+    <title>Je inloglink</title>
+    <style>
+      @media only screen and (max-width: 600px) {
+        .rout-shell { padding: 20px 16px !important; }
+        .rout-body { padding: 8px 4px !important; }
+        .rout-h1 { font-size: 22px !important; line-height: 30px !important; }
+        .rout-cta a { display: block !important; text-align: center !important; }
+        .rout-col { display: block !important; width: 100% !important; padding-right: 0 !important; }
+        .rout-nav a { display: inline-block !important; margin: 0 8px 8px 0 !important; }
+      }
+    </style>
+  </head>
+  <body style="margin:0;padding:0;background-color:#FBF9F5;-webkit-font-smoothing:antialiased;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">Je inloglink voor rout.be</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FBF9F5;">
+      <tr>
+        <td align="center" class="rout-shell" style="padding:40px 20px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;">
+            <!-- Header -->
+            <tr>
+              <td style="padding:0 4px 28px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+                <a href="https://rout.be" style="text-decoration:none;color:#1A1A1A;">
+                  <img src="https://rout.be/img/logo.png" width="36" height="36" alt="ROUT" style="display:inline-block;vertical-align:middle;border:0;border-radius:50%;" />
+                  <span style="display:inline-block;vertical-align:middle;margin-left:10px;font-family:'DM Mono',Menlo,Consolas,monospace;font-size:16px;font-weight:700;letter-spacing:0.2em;color:#1A1A1A;">ROUT</span>
+                </a>
+              </td>
+            </tr>
+            <!-- Body -->
+            <tr>
+              <td class="rout-body" style="padding:0 4px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#1A1A1A;">
+                <h1 class="rout-h1" style="margin:0 0 14px;font-size:26px;line-height:34px;font-weight:700;letter-spacing:-0.01em;color:#1A1A1A;">Log in bij ROUT</h1>
+                <p style="margin:0 0 26px;font-size:16px;line-height:27px;color:#4A453D;">Klik op de knop hieronder om in te loggen. De link is eenmalig en verloopt na korte tijd.</p>
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="rout-cta" style="margin:0 0 26px;">
+                  <tr><td style="background-color:#2D4A3E;border-radius:999px;">
+                    <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 30px;font-size:15px;font-weight:600;color:#FBF9F5;text-decoration:none;border-radius:999px;">Inloggen</a>
+                  </td></tr>
+                </table>
+                <p style="margin:0 0 6px;font-size:13px;line-height:21px;color:#8A857B;">Werkt de knop niet? Kopieer deze link:</p>
+                <p style="margin:0 0 4px;font-size:13px;line-height:21px;word-break:break-all;"><a href="{{ .ConfirmationURL }}" style="color:#2D4A3E;">{{ .ConfirmationURL }}</a></p>
+              </td>
+            </tr>
+            <!-- Soft divider -->
+            <tr><td style="padding:32px 4px 0;"><div style="height:1px;background-color:#EAE5DC;line-height:1px;font-size:0;">&nbsp;</div></td></tr>
+            <!-- Footer -->
+            <tr>
+              <td style="padding:24px 4px 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="rout-cols" style="margin:0 0 20px;">
+                  <tr>
+                    <td class="rout-col" width="33%" valign="top" style="padding:0 12px 12px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+                      <p style="margin:0 0 8px;font-family:'DM Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#9A948A;">Platform</p>
+                      <p style="margin:0;font-size:13px;line-height:22px;">
+                        <a href="https://rout.be/" style="color:#5C574F;text-decoration:none;">QR generator</a><br />
+                        <a href="https://rout.be/studio" style="color:#5C574F;text-decoration:none;">Profile Studio</a><br />
+                        <a href="https://rout.be/batch" style="color:#5C574F;text-decoration:none;">Batch engine</a><br />
+                        <a href="https://rout.be/dashboard" style="color:#5C574F;text-decoration:none;">Dynamic routing</a>
+                      </p>
+                    </td>
+                    <td class="rout-col" width="33%" valign="top" style="padding:0 12px 12px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+                      <p style="margin:0 0 8px;font-family:'DM Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#9A948A;">Infrastructure</p>
+                      <p style="margin:0;font-size:13px;line-height:22px;">
+                        <a href="https://rout.be/domains" style="color:#5C574F;text-decoration:none;">Custom domains</a><br />
+                        <a href="https://rout.be/api" style="color:#5C574F;text-decoration:none;">API &amp; protocol</a><br />
+                        <a href="https://rout.be/self-hosting" style="color:#5C574F;text-decoration:none;">Self-hosting guide</a><br />
+                        <a href="https://github.com/routbe" style="color:#5C574F;text-decoration:none;">GitHub repository</a>
+                      </p>
+                    </td>
+                    <td class="rout-col" width="33%" valign="top" style="padding:0 0 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+                      <p style="margin:0 0 8px;font-family:'DM Mono',Menlo,Consolas,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#9A948A;">Support &amp; Legal</p>
+                      <p style="margin:0;font-size:13px;line-height:22px;">
+                        <a href="https://rout.be/contact" style="color:#5C574F;text-decoration:none;">Contact form</a><br />
+                        <a href="https://rout.be/sovereignty" style="color:#5C574F;text-decoration:none;">Sovereignty</a><br />
+                        <a href="https://rout.be/privacy" style="color:#5C574F;text-decoration:none;">Privacy policy</a><br />
+                        <a href="https://rout.be/manifesto" style="color:#5C574F;text-decoration:none;">Manifesto</a><br />
+                        <a href="https://rout.be/terms" style="color:#5C574F;text-decoration:none;">Terms</a>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+                <p class="rout-nav" style="margin:0 0 16px;font-size:13px;line-height:24px;color:#2D4A3E;">
+                  <a href="https://github.com/routbe" style="color:#2D4A3E;text-decoration:none;margin-right:14px;">GitHub</a>
+                  <a href="https://bsky.app/profile/routbe" style="color:#2D4A3E;text-decoration:none;margin-right:14px;">Bluesky</a>
+                  <a href="https://eyou.social/u/rout" style="color:#2D4A3E;text-decoration:none;margin-right:14px;">Eyou</a>
+                  <a href="https://mastodon.social/@routbe" style="color:#2D4A3E;text-decoration:none;margin-right:14px;">Mastodon</a>
+                  <a href="https://linkedin.com/company/routbe" style="color:#2D4A3E;text-decoration:none;margin-right:14px;">LinkedIn</a>
+                  <a href="https://instagram.com/rout.be" style="color:#2D4A3E;text-decoration:none;margin-right:14px;">Instagram</a>
+                  <a href="mailto:hallo@rout.be" style="color:#2D4A3E;text-decoration:none;">hallo@rout.be</a>
+                </p>
+<p style="margin:0 0 6px;font-size:12px;line-height:19px;color:#9A948A;">Heb je dit niet aangevraagd? Dan kun je deze e-mail negeren.</p>
+                <p style="margin:0;font-size:12px;line-height:19px;color:#9A948A;">&copy; ROUT &middot; <a href="https://rout.be" style="color:#9A948A;text-decoration:none;">rout.be</a> &middot; Soeverein, zonder ruis.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
