@@ -29,3 +29,17 @@ export const socialImageMeta = [
   { property: "og:image", content: LOGO_URL },
   { name: "twitter:image", content: LOGO_URL },
 ];
+
+/**
+ * Third-party brand marks — hardcoded absolute production URLs.
+ * Never import these through Vite; the bundler would rewrite them to a
+ * temporary preview host and break production.
+ */
+export const BRAND_MARK_URLS = {
+  eyou: `${SITE_ORIGIN}/img/brand/eyou.svg`,
+  mastodon: `${SITE_ORIGIN}/img/brand/mastodon.svg`,
+  keycloak: `${SITE_ORIGIN}/img/brand/keycloak.svg`,
+} as const;
+
+/** QR type illustrations (absolute, production-hosted). */
+export const qrTypeImageUrl = (name: string) => `${SITE_ORIGIN}/img/${name}`;
