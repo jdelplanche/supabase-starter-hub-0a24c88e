@@ -23,6 +23,11 @@ export const VIP_HANDLE_GRANT = "vip";
 export const SHORT_HANDLE_MESSAGE =
   "3- and 4-character handles are reserved. Contact support or enter 5+ characters.";
 
+export const TOO_SHORT_MESSAGE = "Handle must be at least 3 characters long.";
+
+/** Same copy as SHORT_HANDLE_MESSAGE — one string, used everywhere. */
+export const RESERVED_LENGTH_MESSAGE = SHORT_HANDLE_MESSAGE;
+
 export function normalizeHandleInput(raw: string): string {
   return raw.trim().replace(/^@/, "").toLowerCase();
 }
@@ -43,11 +48,6 @@ export function needsVipGrant(handle: string): boolean {
   return isShortHandle(handle);
 }
 
-export const TOO_SHORT_MESSAGE = "Handle must be at least 3 characters long.";
-
-/** Same copy as SHORT_HANDLE_MESSAGE — one string, used everywhere. */
-export const RESERVED_LENGTH_MESSAGE = SHORT_HANDLE_MESSAGE;
-
 /**
  * The single source of truth for length-based handle errors, shared by the
  * signup form and the admin portal so the copy can never contradict itself.
@@ -61,4 +61,37 @@ export function handleLengthMessage(handle: string): string | null {
   if (SHORT_HANDLE_RESERVATION_ENABLED && len <= SHORT_HANDLE_MAX) return RESERVED_LENGTH_MESSAGE;
   return null;
 }
+
+export interface CheckHandleResult {
+  allowed: boolean;
+  reason?: "too_short" | "reserved" | "taken" | "ok";
+  message?: string;
+}
+
+/**
+ * Structured validation matching the database trigger:
+ * - < 3 characters: too short
+ * - 3–4 characters: reserved unless VIP-granted
+ * - 5+ characters: allowed
+ */
+export function validateHandle(handle: string, isVipGranted: boolean): CheckHandleResult {
+  const cleanHandle = normalizeHandleInput(handle);
+
+  if (cleanHandle.length < SHORT_HANDLE_MIN) {
+    return { allowed: false, reason: "too_short", message: TOO_SHORT_MESSAGE };
+  }
+
+  if (SHORT_HANDLE_RESERVATION_ENABLED && isShortHandle(cleanHandle)) {
+    if (!isVipGranted) {
+      return {
+        allowed: false,
+        reason: "reserved",
+        message: SHORT_HANDLE_MESSAGE,
+      };
+    }
+  }
+
+  return { allowed: true, reason: "ok", message: "Handle is available!" };
+}
+
 
