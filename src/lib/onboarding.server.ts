@@ -57,8 +57,33 @@ export async function isHandleFree(normalized: string): Promise<HandleAvailabili
   }
 
 
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data } = await supabaseAdmin
+  // Public read: profiles are anon-readable, so the probe uses the publishable
+  // key. It must never depend on the service-role key — when that secret is
+  // absent the whole signup form would break with "couldn't check this handle".
+  const { createClient } = await import("@supabase/supabase-js");
+  const url = process.env["SUPABASE_URL"] ?? process.env["VITE_SUPABASE_URL"];
+  const key =
+    process.env["SUPABASE_PUBLISHABLE_KEY"] ?? process.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
+  if (!url || !key) {
+    // Without a backend we cannot prove the handle is taken; let the DB's own
+    // unique constraint be the final arbiter instead of blocking the user.
+    return { ok: true, normalized };
+  }
+  const supabasePublic = createClient(url, key, {
+    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+    global: {
+      fetch: (input, init) => {
+        const headers = new Headers(init?.headers);
+        if (key.startsWith("sb_") && headers.get("Authorization") === `Bearer ${key}`) {
+          headers.delete("Authorization");
+        }
+        headers.set("apikey", key);
+        return fetch(input, { ...init, headers });
+      },
+    },
+  });
+
+  const { data } = await supabasePublic
     .from("profiles")
     .select("id")
     .ilike("username", normalized)
