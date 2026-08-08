@@ -2,6 +2,9 @@
  * ROUT Profile & Link Hub — data model for the public rout.be/@handle page.
  * Kept deliberately small: handle + identity + an ordered list of blocks.
  */
+import { handleLengthMessage } from "./handle-rules";
+
+
 
 export interface ProfileBlock {
   id: string;
