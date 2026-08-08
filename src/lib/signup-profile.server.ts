@@ -32,7 +32,8 @@ function normalizeHandle(raw: unknown): string {
 
 function isUsableHandle(handle: string) {
   return (
-    handle.length >= 3 &&
+    // 3–4 characters are reserved for admin VIP grants: never auto-applied here.
+    handle.length >= 5 &&
     handle.length <= 120 &&
     HANDLE_PATTERN.test(handle) &&
     !RESERVED.has(handle)

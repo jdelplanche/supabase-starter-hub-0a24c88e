@@ -50,10 +50,11 @@ export async function isHandleFree(normalized: string): Promise<HandleAvailabili
   if (RESERVED.has(normalized)) {
     return { ok: false, normalized, reason: "This handle is reserved by the platform." };
   }
-  // 3- and 4-character handles are a scarce resource: admin VIP grant only.
-  const { needsVipGrant, SHORT_HANDLE_MESSAGE } = await import("./handle-rules");
-  if (needsVipGrant(normalized)) {
-    return { ok: false, normalized, reason: SHORT_HANDLE_MESSAGE };
+  // < 3 too short, 3–4 reserved for VIP grants, 5+ open to everyone.
+  const { handleLengthMessage } = await import("./handle-rules");
+  const lengthIssue = handleLengthMessage(normalized);
+  if (lengthIssue) {
+    return { ok: false, normalized, reason: lengthIssue };
   }
 
 

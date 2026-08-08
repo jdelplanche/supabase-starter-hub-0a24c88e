@@ -21,7 +21,7 @@ export const SHORT_HANDLE_RESERVATION_ENABLED = true;
 export const VIP_HANDLE_GRANT = "vip";
 
 export const SHORT_HANDLE_MESSAGE =
-  "3- and 4-character handles are reserved. Request one from the ROUT team.";
+  "3- and 4-character handles are reserved. Contact support or enter 5+ characters.";
 
 export function normalizeHandleInput(raw: string): string {
   return raw.trim().replace(/^@/, "").toLowerCase();
@@ -45,8 +45,8 @@ export function needsVipGrant(handle: string): boolean {
 
 export const TOO_SHORT_MESSAGE = "Handle must be at least 3 characters long.";
 
-export const RESERVED_LENGTH_MESSAGE =
-  "3- and 4-character handles are reserved. Contact support or enter 5+ characters.";
+/** Same copy as SHORT_HANDLE_MESSAGE — one string, used everywhere. */
+export const RESERVED_LENGTH_MESSAGE = SHORT_HANDLE_MESSAGE;
 
 /**
  * The single source of truth for length-based handle errors, shared by the
